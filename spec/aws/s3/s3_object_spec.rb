@@ -202,7 +202,7 @@ module AWS
             # 1.9 supports encoding, 1.8 does not
             if Object.const_defined?(:Encoding)
               File.should_receive(:open).
-                with(f.path, 'rb', :encoding => "BINARY").
+                with(f.path, 'rb').
                 and_return(f)
             else
               File.should_receive(:open).with(f.path, 'rb').and_return(f)

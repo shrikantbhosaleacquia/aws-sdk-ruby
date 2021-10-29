@@ -65,7 +65,7 @@ module AWS
         when rule[:type] == :map then translate_map(value, rule)
         when rule[:type] == :blob then Base64.decode64(value)
         when rule[:type] == :time then Time.at(value)
-        when rule[:type] == :big_decimal then BigDecimal.new(value)
+        when rule[:type] == :big_decimal then BigDecimal(value)
         else value
         end
       end

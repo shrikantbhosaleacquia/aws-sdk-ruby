@@ -887,6 +887,7 @@ module AWS
               file.stub(:path).and_return(path)
               file.stub(:read).and_return('')
               file.stub(:eof?).and_return(true)
+              file.stub(:set_encoding).and_return(true)
 
               File.should_receive(:open).with(path, *file_opts).and_return(file)
               File.should_receive(:size).with(path).and_return(12)
@@ -924,7 +925,7 @@ module AWS
                   and_return(true)
               end
 
-              let(:file_opts) { ["rb", { :encoding => "BINARY" }] }
+              let(:file_opts) { ["rb"] }
 
               it 'get passed as the opened file' do
                 expect_file_body("hello.txt")

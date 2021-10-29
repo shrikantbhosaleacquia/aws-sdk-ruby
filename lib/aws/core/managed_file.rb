@@ -23,8 +23,9 @@ module AWS
 
       def self.open path
         file_opts = ['rb']
-        file_opts << { :encoding => "BINARY" } if Object.const_defined?(:Encoding)
-        super(path.to_s, *file_opts)
+        f = super(path.to_s, *file_opts)
+        f.set_encoding('BINARY') if Object.const_defined?(:Encoding)
+        f
       end
 
     end
